@@ -35,3 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+/gradle/wrapper/gradle-wrapper.properties
+/gradle/wrapper/gradle-wrapper.jar
+/gradlew
+/gradlew.bat
+/src/test/java/jpabook/jpashop/JpashopApplicationTests.java
+/settings.gradle
