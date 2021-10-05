@@ -8,10 +8,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create # 애플리케이션 실행 시점에 테이블을 모드 지우고 재생성
-      properties:
-        hibernate:
-          show_sql: true # 시스템 아웃에 출력
-          format_sql : true
+    properties:
+      hibernate:
+        show_sql: true # 시스템 아웃에 출력
+        format_sql : true
 
 logging:
   level:
