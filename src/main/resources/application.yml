@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop; # MVCC=TRUE : h2 1.4.200버전부터 제거됨
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create # 애플리케이션 실행 시점에 테이블을 모드 지우고 재생성
+      properties:
+        hibernate:
+          show_sql: true # 시스템 아웃에 출력
+          format_sql : true
+
+logging:
+  level:
+    org.hibernate.SQL: debug # hibernate 로그를 debug 모드로 보이게함. # 로그를 통해서 출력
