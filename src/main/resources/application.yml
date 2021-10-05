@@ -16,3 +16,4 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug # hibernate 로그를 debug 모드로 보이게함. # 로그를 통해서 출력
+    org.hibernate.type: trace # 쿼리 파라미터 찍기
