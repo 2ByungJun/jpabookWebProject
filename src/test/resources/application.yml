@@ -1,0 +1,20 @@
+# 스프링 부트가 따로 설정하지 않아도 memory db 로 자동으로 돌림(Good!)
+spring:
+#  datasource:
+#    url: jdbc:h2:mem:test # in-memory 로 테스트 실행
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop # 애플리케이션 종료 시점에 모두 테이블을 drop 시킴.(자원정리)
+#    properties:
+#      hibernate:
+#        # show_sql: true
+#        format_sql : true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
