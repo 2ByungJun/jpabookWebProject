@@ -1,6 +1,7 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -8,10 +9,12 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository // 자동으로 Spring bean 에 자동으로 등록됨
+@RequiredArgsConstructor
 public class MemberRepository {
 
-    @PersistenceContext // JPA 엔티티 매니저를 자동으로 주입해 줌
-    private EntityManager em;
+    // 스프링 부트 JPA에서는 @PersistenceContext -> @Autowired 를 지원해줌.
+    // 그래서 @RequiredArgsConstructor 을 사용가능함.
+    private final EntityManager em;
 
     public void save(Member member) {
         em.persist(member);
