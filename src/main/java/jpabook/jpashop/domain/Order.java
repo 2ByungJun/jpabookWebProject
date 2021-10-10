@@ -13,20 +13,47 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne // 다 : 일
+    @ManyToOne(fetch = FetchType.LAZY) // 다 : 일
     @JoinColumn(name = "member_id") // FK. 어떤 값으로 매핑을 할 것인가?
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
+    // persist(orderItemA), persist(orderItemB), persist(orderItemC)
+    // cascade 를 주면 persist(order) 로 통일할 수 있게 해준다.
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery; // 일 : 일 관계는, FK 키를 어디든지 넣어줄 수 있는데 자주 사용하는 테이블로 넣는걸 추천
+    // persist 는 원래 각 각에서 선언해주어야하는데 cascade 는 order를 저장할 때 delivery도 저장해준다.
 
     private LocalDateTime orderDate; // 주문시간
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status; // 주문상태 ( ORDER, CANCEL)
 
+    //==양방향 연관관계 편의 메서드==//
+    public void setMember(Member member){
+        this.member = member;
+        member.getOrders().add(this);
+    }
+
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public void setDelivery(Delivery delivery){
+        this.delivery = delivery;
+        delivery.setOrder(this);
+    }
+
+/*    public static void main(String[] args){
+        Member member = new Member();
+        Order order = new Order();
+
+        member.getOrders().add(order);
+        order.setMember(member);
+        => member.setMember(member);
+    }*/
 }

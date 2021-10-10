@@ -25,4 +25,5 @@ public class Member {
     @OneToMany(mappedBy = "member") // 일 대 다
     private List<Order> orders = new ArrayList<>();
 
+
 }
