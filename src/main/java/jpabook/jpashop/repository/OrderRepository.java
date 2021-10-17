@@ -28,7 +28,7 @@ public class OrderRepository {
     /*
     동적쿼리 => 나중에 QDSL 로 수정할 예정(쿼리DSL)
      */
-    public List<Order> findAll(OrderSearch orderSearch) {
+    public List<Order> findAllByString(OrderSearch orderSearch) {
 
         //language=JPAQL
         String jpql = "select o From Order o join o.member m";
