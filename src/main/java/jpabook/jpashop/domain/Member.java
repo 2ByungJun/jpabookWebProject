@@ -19,7 +19,7 @@ public class Member {
     private String name;
 
     @Embedded // '내장타입을 포함했다.' 라는 뜻.
-    private Address adress;
+    private Address address;
 
     // order 테이블에 있는 meber 에 대해 값을 가직고 있는 거울일 뿐이다.
     @OneToMany(mappedBy = "member") // 일 대 다

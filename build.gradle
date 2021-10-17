@@ -26,6 +26,7 @@ dependencies { // 의존관계
     implementation 'org.springframework.boot:spring-boot-devtools' // 팁! 서버를 리로드 하지 않아도 템플릿을 업데이트 할 수 있다.
     // 스프링 부트에서 지원해주지 않기 때문에 버전을 적용시켜놓아야 한다.
     implementation 'com.github.gavlyukovskiy:flexy-pool-spring-boot-starter:1.7.1' // 팁! 쿼리 파라미터를 확인할 수 있다.
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
