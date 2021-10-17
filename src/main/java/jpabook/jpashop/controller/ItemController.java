@@ -66,6 +66,9 @@ public class ItemController {
         @PostMapping("/items/{itemId}/edit") // itemId는 form 에서 넘어오기에 @PathVariable 안써도 상관없다.
         public String updateItem(@PathVariable("itemId") Long itemId, @ModelAttribute("form") BookForm form){
 
+            /* 준영속 엔티티 : 영속성 컨텍스트가 더는 관리하지 않는 엔티티이다. */
+            // 이미 DB에 한 번 저장되어서 식별자가 존재한다.
+            // JPA 가 관리하지 않고 있기때문에, 변경감지가 일어난다.
             Book book = new Book();
             book.setId(form.getId());
             book.setName(form.getName());
@@ -73,8 +76,15 @@ public class ItemController {
             book.setStockQuantity(form.getStockQuantity());
             book.setAuthor(form.getAuthor());
             book.setIsbn(form.getIsbn());
-
+            // 준영속 엔티티는 데이터를 수정하려해도 수정되지 않는다.
+            // 1. 변경 감지 기능 사용 (준영속상태를 조회시켜 영속상태의 값을 업데이트 시킨다.)(V 추천)
+            // 2. 병합 (merge) 사용 (준영속상태 -> 영속으로 변경시켜준다.)
             itemService.saveItem(book);
+
+            // * 어설프게 controller 에서 엔티티를 만들지 말자.
+            // 위의 코드보다 더 좋은 방법은.
+//            itemService.updateItem(itemId, form.getName() , form.getPrice(), form.getStockQuantity());
+
             return "redirect:/items";
         }
 }
